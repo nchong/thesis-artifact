@@ -1,0 +1,78 @@
+SUMMARY
+
+This figure shows the kernel transformation of the code in Figure 2.7. We also give
+the non-deterministic set and watchdog race instrumentation encodings given by
+Table 2.2.
+
+FILES
+
+* nbor-translated.bpl
+
+As given in Figure 2.8, this gives the Boogie intermediate file following the
+kernel transformation of Figure 2.7. For clarity we simplified some of the
+Boogie syntax in the figure.
+
+* nondetset.bpl
+* watchdog.bpl
+
+The race instrumentation encodings as summarised by Table 2.2.
+
+* set.bpl
+
+A race encoding using a direct set encoding requiring quantifiers.
+
+INSTRUCTIONS
+
+1. Copy and paste nondetset.bpl and nbor-translated.bpl into the rise4fun web
+interface.
+
+  http://rise4fun.com/Boogie
+
+Add the following statement to the contract of the nbor procedure (after the
+requires clauses):
+
+  modifies rdExistsA, rdOffsetA, wrExistsA, wrOffsetA;
+
+We expect an error (corresponding to a data race) to be reported.
+
+Then uncomment the barrier call and re-check the program. We now expect it to
+pass because the barrier enforces an order between the read and writes to A.
+
+2. Copy and paste watchdog.bpl and nbor-translated.bpl into the rise4fun web
+interface.
+
+  http://rise4fun.com/Boogie
+
+Add the following statement to the contract of the nbor procedure (after the
+requires clauses):
+
+  modifies trOffset, tracking, rdExistsA, wrExistsA;
+
+We expect an error (corresponding to a data race) to be reported.
+
+Then uncomment the barrier call and re-check the program. We now expect it to
+pass because the barrier enforces an order between the read and writes to A.
+
+3. Copy and paste set.bpl and nbor-translated.bpl into the rise4fun web
+interface.
+
+  http://rise4fun.com/Boogie
+
+Remove the following statement from the contract of the nbor procedure:
+
+  requires !rdExistsA && !wrExistsA;
+
+and replace them with:
+
+  requires (forall x : int :: !rdSet[x]);
+  requires (forall x : int :: !wrSet[x]);
+
+Add the following statement to the contract of the nbor procedure (after the
+requires clauses):
+
+  modifies trOffset, tracking, rdExistsA, wrExistsA;
+
+We expect an error (corresponding to a data race) to be reported.
+
+Then uncomment the barrier call and re-check the program. We now expect it to
+pass because the barrier enforces an order between the read and writes to A.

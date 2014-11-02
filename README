@@ -1,0 +1,29 @@
+Scalable Verification Techniques for Data-Parallel Programs: Accompanying Artifact
+==================================================================================
+
+We give code for each of the figures appearing in the thesis. These are either
+Boogie, CUDA or OpenCL applications. The code for each figure is found in its
+matching directory.
+
+Contact
+=======
+
+Nathan Chong <nathan.chong@gmail.com>
+
+Prerequisites
+=============
+
+The CUDA application (fig 2.2) requires a platform with the NVIDIA CUDA toolkit.
+The OpenCL application (fig 2.3 and 2.4) requires a platform with an OpenCL
+implementation. The Houdini example (fig 3.3) requires a local install of
+Boogie. All other examples can run using the rise4fun web interfaces for
+Boogie or GPUVerify.
+
+  http://rise4fun.com/Boogie
+  http://rise4fun.com/gpuverify-cuda
+  http://rise4fun.com/gpuverify-opencl
+
+Instructions for installing Boogie and GPUVerify are online.
+
+  https://boogie.codeplex.com
+  http://multicore.doc.ic.ac.uk/tools/GPUVerify/

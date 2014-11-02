@@ -1,0 +1,25 @@
+SUMMARY
+
+This figure shows a two simple kernel fragments exhibiting barrier divergence.
+
+FILES
+
+* a.cu
+
+As given in Figure 2.5(a) as a CUDA kernel.
+
+* b.cl
+
+As given in Figure 2.5(b) as an OpenCL kernel.
+
+INSTRUCTIONS
+
+1. Copy and paste each kernel into the rise4fun GPUVerify web interface.
+
+  a.cu should be used with the CUDA frontend:
+  http://rise4fun.com/gpuverify-cuda
+
+  b.cl should be used with the OpenCL frontend
+  http://rise4fun.com/gpuverify-opencl
+
+In both cases we expect a barrier divergence error to be reported.

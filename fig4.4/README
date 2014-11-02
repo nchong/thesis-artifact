@@ -1,0 +1,38 @@
+SUMMARY
+
+This figure gives a stream compaction kernel.
+
+FILES
+
+* compact.cl
+
+As given in Figure 4.4, this gives the OpenCL kernel.
+
+* compact.cpp
+
+Accompanying host code and main function. We do not include error checking code.
+We setup an array of 8 elements [A,B,C,D,E,F,G,H] as given in Figure 4.3. We
+filter the array with a matching predicate to give the same expected output
+[A,C,D,G].
+
+INSTRUCTIONS
+
+Assuming that you have installed the OpenCL header and libraries in
+$(OPENCL_HOME):
+
+1. Compile compact.cpp with a C++ compiler.
+
+  $ clang++ -o compact compact.cpp -I $(OPENCL_HOME)/include \
+                                   -L$(OPENCL_HOME)/lib64 \
+                                   -L$(OPENCL_HOME)/lib -lOpenCL
+
+Alternatively, on Mac:
+
+  $ clang++ -o compact compact.cpp -framework OpenCL
+
+2. Run the application and verify the output.
+
+  $ ./compact
+  data = [ A, B, C, D, E, F, G, H ]
+  out  = [ -, -, -, -, -, -, -, - ]
+  out' = [ A, C, D, G, -, -, -, - ]

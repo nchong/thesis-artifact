@@ -1,0 +1,64 @@
+SUMMARY
+
+This figure shows a loop with a number of candidate invariants for input to the
+Houdini procedure.
+
+FILES
+
+* loop.bpl
+
+As given in Figure 3.3, this gives a loop with a number of candidate invariant
+annotations. For clarity we simplified some of the Boogie syntax in the figure.
+
+INSTRUCTIONS
+
+1. Verify the translated program using Boogie. We use the flags:
+  /contractInfer    to enable Houdini
+  /trace            to see a log of candidate refutations
+  /errorLimit:2     to set the maximum number of refutations per Houdini iteration
+
+  $ Boogie.exe /contractInfer /errorLimit:2 /trace loop.bpl
+
+You should see a series of Houdini rounds with refutations. The expected
+maximal inductive invariant is c2 && c5.
+
+  [TRACE] Using prover: /Users/nafe/work/autobuild/mac/boogie/Binaries/z3.exe
+  Boogie program verifier version 2.2.30705.1126, Copyright (c) 2003-2013, Microsoft.
+  Parsing loop.bpl
+  Coalescing blocks...
+
+  Running abstract interpretation...
+    [0.032729 s]
+  Collecting existential constants...
+  Building call graph...
+  Number of implementations = 1
+  Beginning VC generation for Houdini...
+  Generating VC for A
+  Verifying A
+  Houdini assignment axiom: (And true _c0 _c1 _c2 _c3 _c4 _c5 _c6)
+  Time taken = 0.016231
+  Removing _c1
+  Verifying A
+  Houdini assignment axiom: (And true _c0 (! _c1) _c2 _c3 _c4 _c5 _c6)
+  Time taken = 0.003135
+  Removing _c3
+  Verifying A
+  Houdini assignment axiom: (And true _c0 (! _c1) _c2 (! _c3) _c4 _c5 _c6)
+  Time taken = 0.001556
+  Removing _c0
+  Verifying A
+  Houdini assignment axiom: (And true (! _c0) (! _c1) _c2 (! _c3) _c4 _c5 _c6)
+  Time taken = 0.002829
+  Removing _c4
+  Removing _c6
+  Verifying A
+  Houdini assignment axiom: (And true (! _c0) (! _c1) _c2 (! _c3) (! _c4) _c5 (! _c6))
+  Time taken = 0.001635
+  Number of true assignments = 2
+  Number of false assignments = 5
+  Prover time = 0.03
+  Unsat core prover time = 0.00
+  Number of prover queries = 5
+  Number of unsat core prover queries = 0
+  Number of unsat core prunings = 0
+  verified

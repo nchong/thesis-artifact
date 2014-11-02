@@ -1,0 +1,26 @@
+SUMMARY
+
+This figure shows a CUDA transpose kernel that requires invariants.
+
+FILES
+
+* transpose.cu
+
+As given in Figure 3.8 with additional invariants required to ensure that the
+access pattern invariants are inductive.
+
+INSTRUCTIONS
+
+1. Copy and paste the kernel into the rise4fun web interface.
+
+  transpose.cu should be used with the CUDA frontend
+  http://rise4fun.com/gpuverify-cuda
+
+We expect the kernel to pass.
+
+2. If you have access to a local install of GPUVerify you can turn off invariant
+generation and only rely on the supplied annotations.
+
+  $ GPUVerify.py --blockDim=[4,2] --gridDim=[2,2] \
+                 -DWIDTH=8 -DHEIGHT=8 -DTILE_DIM=4 -DBLOCK_ROWS=2 \
+                 --no-infer transpose.cu

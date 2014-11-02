@@ -1,0 +1,21 @@
+SUMMARY
+
+This figure shows two loops that require loop invariants.
+
+FILES
+
+* a.bpl
+
+As given in Figure 3.1(a).
+
+* b.bpl
+
+As given in Figure 3.1(b).
+
+INSTRUCTIONS
+
+1. Copy and paste each example into the rise4fun web interface.
+
+  http://rise4fun.com/Boogie
+
+We expect both examples to pass.

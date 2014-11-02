@@ -1,0 +1,19 @@
+SUMMARY
+
+This figure shows a racy kernel that demonstrates the necessity of shared state
+abstraction.
+
+FILES
+
+* k.cl
+
+As given in Figure 2.6 as an OpenCL kernel.
+
+INSTRUCTIONS
+
+1. Copy and paste the kernel into the rise4fun GPUVerify web interface.
+
+  k.cl should be used with the OpenCL frontend
+  http://rise4fun.com/gpuverify-opencl
+
+We expect a data race error to be reported.

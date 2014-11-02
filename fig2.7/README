@@ -1,0 +1,22 @@
+SUMMARY
+
+This figure shows a racy kernel and includes a fix by including a barrier.
+
+FILES
+
+* nbor.cl
+
+As given in Figure 2.7 in an OpenCL kernel with an additional #define for
+including a fix.
+
+INSTRUCTIONS
+
+1. Copy and paste the kernel into the rise4fun web interface.
+
+  k.cl should be used with the OpenCL frontend
+  http://rise4fun.com/gpuverify-opencl
+
+We expect a data race error to be reported.
+
+2. Edit the kernel to include fix by #define-ing APPLY_FIX or removing the
+#ifdef condition around the barrier. Now we expect the kernel to pass.

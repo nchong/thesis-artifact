@@ -1,0 +1,24 @@
+SUMMARY
+
+This figure shows a simple CUDA kernel that requires invariants.
+
+FILES
+
+* saxpy-slice.cu
+
+As given in Figure 3.6 with additional invariants required to ensure that the
+access pattern invariants are inductive.
+
+INSTRUCTIONS
+
+1. Copy and paste the kernel into the rise4fun web interface.
+
+  saxpy-slice.cu should be used with the CUDA frontend
+  http://rise4fun.com/gpuverify-cuda
+
+We expect the kernel to pass.
+
+2. If you have access to a local install of GPUVerify you can turn off invariant
+generation and only rely on the supplied annotations.
+
+  $ GPUVerify.py --gridDim=[1] --blockDim=[4] --no-infer saxpy-slice.cu

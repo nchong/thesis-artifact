@@ -1,5 +1,5 @@
-Scalable Verification Techniques for Data-Parallel Programs: Accompanying Artifact
-==================================================================================
+Scalable Verification Techniques for Data-Parallel Programs
+===========================================================
 
 We give code for each of the figures appearing in the thesis. These are either
 Boogie, CUDA or OpenCL applications. The code for each figure is found in its

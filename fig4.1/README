@@ -1,0 +1,60 @@
+SUMMARY
+
+This figure gives four kernel fragments that demonstrate the difference between
+the adversarial, equality, known-equality and barrier invariant abstractions of
+shared state.
+
+FILES
+
+* a.cl
+* b.cl
+* c.cl
+* d.cl
+
+As given in Figure 4.1 as OpenCL kernels. All kernels are correct, but some
+abstractions are not precise enough to capture this.
+
+INSTRUCTIONS
+
+1. Copy and paste the kernel a.cl into the rise4fun web interface. Note that we
+explicitly request the adversarial abstraction.
+
+  a.cl should be used with the OpenCL frontend
+  http://rise4fun.com/gpuverify-opencl
+
+We expect the kernel to verify. Try using the more refined equality abstraction
+by replacing the command argument --adversarial-abstraction with --equality-abstraction to the first line (this should also verify).
+
+  //--local_size=8 --num_groups=1 --equality-abstraction
+
+2. Copy and paste the kernel b.cl into the rise4fun web interface. Note that we
+explicitly request the adversarial abstraction.
+
+  b.cl should be used with the OpenCL frontend
+  http://rise4fun.com/gpuverify-opencl
+
+This kernel will not verify using the adversarial abstraction. Try using the
+more refined equality abstraction by replacing the command argument
+--adversarial-abstraction with --equality-abstraction to the first line (this
+should now verify).
+
+3. Copy and paste the kernel c.cl into the rise4fun web interface. Note that we
+explicitly request the equality abstraction.
+
+  c.cl should be used with the OpenCL frontend
+  http://rise4fun.com/gpuverify-opencl
+
+This kernel will not verify using the equality abstraction (and so will not
+verify with the coarser adversarial abstraction). Note that the known-equality
+abstraction is not implemented in GPUVerify, so we can handle this using a
+barrier invariant (uncomment it in the sourcecode); now the kernel should
+verify.
+
+4. Copy and paste the kernel d.cl into the rise4fun web interface. Note that we
+use barrier invariants.
+
+  d.cl should be used with the OpenCL frontend
+  http://rise4fun.com/gpuverify-opencl
+
+The kernel will verify. If you remove the barrier invariant and explicitly
+request the adversarial or equality abstraction then the kernel will not verify.
